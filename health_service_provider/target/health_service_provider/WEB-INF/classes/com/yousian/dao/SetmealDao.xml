@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yousian.dao.SetmealDao">
+<insert id="add" parameterType="com.yousian.pojo.Setmeal" keyProperty="id" useGeneratedKeys="true">
+    insert into t_setmeal values (null,#{name},#{code},#{helpCode},#{sex},#{age},#{price},#{remark},#{attention},#{img})
+</insert>
+    <insert id="addsetmealandgroup" parameterType="map">
+        insert into t_setmeal_checkgroup(setmeal_id,checkgroup_id)
+        values
+        (#{setmeal},#{group})
+
+    </insert>
+    <select id="findpage" parameterType="string" resultType="com.yousian.pojo.Setmeal">
+        select * from t_setmeal
+        <if test="value != null and value != '' and value.length > 0">
+            where code = #{value} or name = #{value} or helpCode = #{value}
+        </if>
+    </select>
+    <delete id="delsetmealandgroup" parameterType="int">
+        delete from t_setmeal_checkgroup where setmeal_id =#{setmeal_id}
+    </delete>
+    <delete id="deletesetmeal" parameterType="int">
+        delete from t_setmeal where id=#{id}
+    </delete>
+    <select id="getSetmeal" resultType="com.yousian.pojo.Setmeal">
+        select * from t_setmeal
+    </select>
+    <resultMap id="findsetmealandcheckgroup" type="com.yousian.pojo.Setmeal">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="helpCode" property="helpCode"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="price" property="price"/>
+        <result column="remark" property="remark"/>
+        <result column="attention" property="attention"/>
+        <result column="img" property="img"/>
+        <!--参数的意思分别是在实体类的属性名  实体类路径  要在那个文件的那个方法查多对多的多  要给那个方法穿那个条件查询  查出来的Java的类型-->
+        <collection property="checkGroups" ofType="com.yousian.pojo.CheckGroup" select="com.yousian.dao.CheckgroupDao.findCheckGroupBySetmealId" column="id" javaType="list">
+
+        </collection>
+    </resultMap>
+
+    <select id="findsetmealById" parameterType="int" resultMap="findsetmealandcheckgroup">
+        select * from t_setmeal where id=#{id}
+    </select>
+    <select id="findSetmealCount" resultType="map">
+    SELECT s.name,COUNT(o.id) AS value FROM t_order o,t_setmeal s
+        WHERE o.setmeal_id=s.id GROUP BY s.name;
+</select>
+
+</mapper>

@@ -1,0 +1,17 @@
+com\yousian\dao\SetmealDao.class
+com\yousian\service\UserServiceImpl.class
+com\yousian\dao\PermissionDao.class
+com\yousian\dao\UserDao.class
+com\yousian\service\ReportServiceImpl.class
+com\yousian\service\SetmealServiceImpl.class
+com\yousian\dao\OrderDao.class
+com\yousian\dao\CheckitemDao.class
+com\yousian\dao\CheckgroupDao.class
+com\yousian\dao\OrderSettingDao.class
+com\yousian\service\CheckgroupServiceImpl.class
+com\yousian\service\CheckitemServiceImpl.class
+com\yousian\service\MemberServiceImpl.class
+com\yousian\service\OrderSettingServiceImpl.class
+com\yousian\service\OrderServiceImpl.class
+com\yousian\dao\MemberDao.class
+com\yousian\dao\RoleDao.class

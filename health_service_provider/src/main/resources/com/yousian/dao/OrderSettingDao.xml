@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yousian.dao.OrderSettingDao">
+<select id="finddatebyorderdate" parameterType="date" resultType="long">
+select count(id) from t_ordersetting where orderDate = #{orderDate}
+</select>
+    <update id="updateorderbydate" parameterType="com.yousian.pojo.OrderSetting">
+    update t_ordersetting set number = #{number} where orderDate = #{orderDate}
+
+    </update>
+    <insert id="addorder" parameterType="com.yousian.pojo.OrderSetting">
+        insert into t_ordersetting values (null,#{orderDate},#{number},#{reservations})
+    </insert>
+    <select id="getOrderSettingByMonth" parameterType="map" resultType="com.yousian.pojo.OrderSetting">
+        select * from t_ordersetting where orderDate between #{tou} and #{wei}
+    </select>
+<select id="findorderbydate" parameterType="date" resultType="com.yousian.pojo.OrderSetting">
+  select * from t_ordersetting where orderDate = #{orderDate}
+</select>
+    <update id="editNumberByDate" parameterType="com.yousian.pojo.OrderSetting">
+        update t_ordersetting set reservations = #{reservations} where orderDate = #{orderDate}
+    </update>
+</mapper>

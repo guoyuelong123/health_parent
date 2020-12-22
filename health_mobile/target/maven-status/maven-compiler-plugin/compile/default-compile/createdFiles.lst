@@ -1,0 +1,4 @@
+com\yousian\controller\MemberController.class
+com\yousian\controller\ValidateCodeController.class
+com\yousian\controller\SetmealController.class
+com\yousian\controller\OrderController.class

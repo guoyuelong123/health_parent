@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yousian.dao.MemberDao">
+<select id="findmemberbytekephone" parameterType="string" resultType="com.yousian.pojo.Member">
+select * from t_member where phoneNumber = #{phoneNumber}
+</select>
+    <insert id="addMember" parameterType="com.yousian.pojo.Member">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_member(fileNumber,name,sex,idCard,phoneNumber,regTime,password,email,birthday,remark)
+        values (#{fileNumber},#{name},#{sex},#{idCard},#{phoneNumber},#{regTime},#{password},#{email},#{birthday},#{remark})
+    </insert>
+    <select id="findMemberCountBeforeDate" parameterType="string" resultType="int">
+        select count(id) from t_member where regTime &lt;= #{month}
+    </select>
+    <!--根据日期统计会员数量-->
+    <select id="findMemberCountByDate" parameterType="String" resultType="int">
+  SELECT COUNT(id) FROM t_member WHERE regTime = #{value}
+</select>
+    <!--根据日期统计会员数，统计指定日期之后的会员数-->
+    <select id="findMemberCountAfterDate" parameterType="String" resultType="int">
+  SELECT COUNT(id) FROM t_member WHERE regTime &gt;=#{value}
+</select>
+    <!--总会员数-->
+    <select id="findMemberTotalCount" resultType="int">
+  select count(id) from t_member
+</select>
+
+</mapper>

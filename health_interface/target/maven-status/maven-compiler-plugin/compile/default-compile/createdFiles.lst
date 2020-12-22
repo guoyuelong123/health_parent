@@ -1,0 +1,8 @@
+com\yousian\service\OrderService.class
+com\yousian\service\MemberService.class
+com\yousian\service\OrderSettingService.class
+com\yousian\service\CheckitemService.class
+com\yousian\service\CheckgroupService.class
+com\yousian\service\UserSerivce.class
+com\yousian\service\ReportService.class
+com\yousian\service\SetmealService.class
